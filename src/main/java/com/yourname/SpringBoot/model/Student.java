@@ -11,6 +11,7 @@ public class Student {
     private String lastName;
     private String course;
 
+
     public Student(
             @JsonProperty("id")
             UUID id,
