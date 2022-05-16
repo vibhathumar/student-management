@@ -2,6 +2,7 @@ package com.yourname.SpringBoot.service;
 
 import com.yourname.SpringBoot.data.object.access.StudentDao;
 import com.yourname.SpringBoot.model.Student;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -11,19 +12,20 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
+@Slf4j
 public class StudentService {
 
     private final StudentDao studentDao;
     @Autowired
-    public StudentService(@Qualifier("fakedao") StudentDao studentDao) {
+    public StudentService(@Qualifier("fakeDao") StudentDao studentDao) {
         this.studentDao = studentDao;
     }
 
     public int persistnewstudent(UUID studentId, Student student){
         UUID studentUid=studentId==null?UUID.randomUUID():studentId;
         student.setId(studentId);
+        log.info("adding new student with id : {}",studentId);
         return studentDao.insertNewStudent(studentUid,student);
-
     }
 
     public Student getStudentById(UUID studentId){
