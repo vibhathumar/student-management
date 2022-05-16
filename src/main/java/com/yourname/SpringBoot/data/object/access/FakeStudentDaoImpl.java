@@ -1,10 +1,12 @@
 package com.yourname.SpringBoot.data.object.access;
 
 import com.yourname.SpringBoot.model.Student;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
 @Repository("fakeDao")
+@Slf4j
 public class FakeStudentDaoImpl implements StudentDao{
 
     private final Map<UUID,Student> database;
